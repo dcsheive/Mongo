@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New Owl Form</title>
+    <link rel="stylesheet" href="/bootstrap.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="box">
+        <h1>Edit owl</h1>
+        <% if(messages.registration) { %>
+            <% for (var x of messages.registration) { %>
+            <h5><%= x %></h5>
+            <% } %>
+        <% } %>
+        <form action="/owls/<%=owl.id%>" method="POST" id="form1">
+            <div class="form-control">
+                <label for="">Name:</label>
+                <input type="text" class="form-control" name="name" value="<%=owl.name%>">
+            </div>
+            <div class="form-control">
+                <label for="">Age:</label>
+                <input type="text" class="form-control" name="age" value="<%=owl.age%>">
+            </div>
+            <div class="form-control">
+                <label for="">Description:</label>
+                <textarea class="form-control" name="desc" cols="30" rows="4"><%=owl.desc%></textarea>
+            </div>
+        </form>
+        <button form="form1" type="submit">Save</button>
+        <a href="/owls/<%=owl.id%>">
+            <button class="blue">Go Back</button>
+        </a> 
+        <form action="/owls/<%=owl.id%>/delete" method="POST" style="display: inline-block;">
+            <button class="red" type="submit">Delete</button>
+        </form>
+    </div>
+</body>
+</html>

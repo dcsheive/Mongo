@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Owl Display</title>
+    <link rel="stylesheet" href="/bootstrap.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="box">
+        <h1><%=owl.name%></h1>
+        <h3 class="quote"><%=owl.desc%></h3>
+        <h3 class="quote"><%=owl.age%></h3>
+        <a href="/owls/<%=owl.id%>/edit">
+            <button>Edit</button>
+        </a>
+        <a href="/">
+            <button class="blue">Go Back</button>
+        </a> 
+    </div>
+</body>
+</html>

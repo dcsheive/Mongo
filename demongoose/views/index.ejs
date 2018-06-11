@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <% if(messages.registration) { %>
+        <% for (var x of messages.registration) { %>
+        <h3><%= x %></h3>
+        <% } %>
+    <% } %>
+    <form action="/users" method="POST">
+        <div class="form-control">
+            <label for="">First Name:</label>
+            <input type="text" name="first_name">
+        </div>
+        <div class="form-control">
+            <label for="">Last Name:</label>
+            <input type="text" name="last_name">
+        </div>
+        <div class="form-control">
+            <label for="">Age:</label>
+            <input type="text" name="age">
+        </div>
+        <div class="form-control">
+            <label for="">Email:</label>
+            <input type="text" name="email">
+        </div>
+        <input type="submit">
+    </form>
+    <% for (let i=0; i<users.length; i++){%>
+        <p>Name: <%=users[i].first_name%> <%=users[i].last_name%> Age: <%=users[i].age%> Email: <%=users[i].email%>  <%=users[i].created_at%></p>
+
+    <% } %>
+</body>
+</html>
