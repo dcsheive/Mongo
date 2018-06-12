@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.box{
+    border: 2px solid blue;
+    border-radius: 10px;
+    padding: 10px 50px 10px 50px;
+}
+h5 {
+    color: red;
+}
+.quote {
+    color: grey;
+    font-size: 21px; 
+}
+.timestamp{
+    color: blue;
+    margin-left: 40px;
+}
+p {
+    margin-bottom: 0;
+}
+button{
+    background:linear-gradient(lightgreen, green);
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+}
+.blue {
+    background: linear-gradient(lightblue, blue);
+}
+.comment{
+    border: 1px solid black;
+    margin-left: 50px;
+    margin-top: 10px;
+    padding: 20px;
+    box-shadow: 2px 2px 5px black;
+    border-radius: 5px;
+}
+.message {
+    border: 1px solid gray;
+    box-shadow: 2px 2px 5px black;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.commentform {
+    margin-left: 50px;
+    margin-top: 10px;
+}

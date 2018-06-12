@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quote Form</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="box">
+        <h1>Dojo Board</h1>
+        <% if(messages.message) { %>
+            <% for (var x of messages.message) { %>
+            <h5><%= x %></h5>
+            <% } %>
+        <% } %>
+        <div class="form-control">
+            <form action="/message" method="POST">
+                <label for="">Name:</label>
+                <input type="text" class="form-control" name="name">
+                <label for="">Message:</label>
+                <textarea class="form-control" name="text" cols="30" rows="4"></textarea>
+                <button type="submit">Post Message</button>
+            </form>
+        </div>
+        <% for (let i=0; i<messages.length; i++){%>
+            <div class="message">
+                <p class="quote">"<%=messages[i].text%>"</p>
+                <p class="timestamp"><%=messages[i].name%> on <%=messages[i].createdAt%></p>
+            </div>
+            <%for (let j = 0; j<messages[i].comments.length;j++){%>
+                <div class="comment">
+                    <p class="quote">"<%=messages[i].comments[j].text%>"</p>
+                    <p class="timestamp"><%=messages[i].comments[j].name%> on <%=messages[i].comments[j].createdAt%></p>
+                </div>
+            <%}%>
+            <% if(messages.comment) { %>
+                <% for (var x of messages.comment) { %>
+                <h5><%= x %></h5>
+                <% } %>
+            <% } %>
+            <div class="form-control commentform">
+                <form action="/comment" method="POST">
+                    <label for="">Name:</label>
+                    <input type="text" class="form-control" name="name">
+                    <label for="">Comment:</label>
+                    <textarea class="form-control" name="text" cols="30" rows="4"></textarea>
+                    <input type="hidden" name="message_id" value="<%=messages[i].id%>">
+                    <button type="submit">Post Comment</button>
+                </form>
+            </div>
+        <% } %>
+        
+    </div>
+</body>
+</html>
