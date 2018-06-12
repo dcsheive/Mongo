@@ -23,37 +23,37 @@ mongoose.connect('mongodb://localhost/users');
 var UserSchema = new mongoose.Schema({
     email: {
         type: String, 
-        required: [true,'Email is required'],
+        required: [true,'Email is required.'],
         validate: {
             validator:function(value){
                 return /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/.test(value);
             },
-            message: "Must be a valid email"
+            message: "Must be a valid email."
         }
     },
     first_name:  { 
         type: String, 
-        required: [true, "First name is required"], 
-        minlength: [2, "First name must be at least 2 characters"]
+        required: [true, "First name is required."], 
+        minlength: [2, "First name must be at least 2 characters."]
     },
     last_name: { type: String, 
-        required: [true, "Last name is required"], 
-        minlength: [2, "Last name must be at least 2 characters"] 
+        required: [true, "Last name is required."], 
+        minlength: [2, "Last name must be at least 2 characters."] 
     },
     birthday: { type: Date },
     password: { 
         type: String, 
-        required: [true, "Password is required"],
-        minlength: [8, "Password must be 8 characters"]
+        required: [true, "Password is required."],
+        minlength: [8, "Password must be 8 characters."]
     },
     password_confirm: {
         type: String,
-        required: [true, "Please confirm your password"],
+        required: [true, "Please confirm your password."],
         validate: {
             validator:function(value){
                 return value == this.password
             },
-            message: "Passwords don't match"
+            message: "Passwords don't match."
         }
     }
 
