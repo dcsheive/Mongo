@@ -96,7 +96,6 @@ app.post('/register', function (req, res){
             user.save(function(err){
                 if(err){
                     for(var key in err.errors){
-                        console.log(key)
                         req.flash(key, err.errors[key].message);
                     }
                     res.redirect('/');
