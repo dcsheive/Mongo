@@ -31,17 +31,24 @@ var UserSchema = new mongoose.Schema({
             message: "Must be a valid email"
         }
     },
-    first_name:  { type: String, required: true, minlength: 3},
-    last_name: { type: String, required: true, minlength: 3 },
+    first_name:  { 
+        type: String, 
+        required: [true, "First name is required"], 
+        minlength: [2, "First name must be at least 2 characters"]
+    },
+    last_name: { type: String, 
+        required: [true, "Last name is required"], 
+        minlength: [2, "Last name must be at least 2 characters"] 
+    },
     birthday: { type: Date },
     password: { 
         type: String, 
-        required: true,
+        required: [true, "Password is required"],
         minlength: [8, "Password must be 8 characters"]
     },
     password_confirm: {
         type: String,
-        required: true,
+        required: [true, "Please confirm your password"],
         validate: {
             validator:function(value){
                 return value == this.password
@@ -81,7 +88,7 @@ app.post('/register', function (req, res){
     req.session.birthday = req.body.birthday
     User.find({email: req.body.email}, function(err,user){
         if(user.length>0){
-            req.flash('registration', "Email taken!");
+            req.flash('email', "Email taken!");
             res.redirect('/');
         }
         else{
@@ -89,7 +96,8 @@ app.post('/register', function (req, res){
             user.save(function(err){
                 if(err){
                     for(var key in err.errors){
-                        req.flash('registration', err.errors[key].message);
+                        console.log(key)
+                        req.flash(key, err.errors[key].message);
                     }
                     res.redirect('/');
                 }
