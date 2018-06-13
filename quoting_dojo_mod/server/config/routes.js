@@ -1,33 +1,15 @@
-const mongoose = require('mongoose')
-const Quote = mongoose.model('Quote')
+const quotes = require('../controllers/quotes.js')
 module.exports = function(app){
     app.get('/', function(req, res) {
         return res.render('index')
-    
     })
     app.post('/quotes', function (req, res){
-        var quote = new Quote(req.body);
-        quote.save(function(err){
-            if(err){
-                console.log("We have an error!", err);
-                for(var key in err.errors){
-                    req.flash('registration', err.errors[key].message);
-                }
-                res.redirect('/');
-            }
-            else {
-                res.redirect('/quotes');
-            }
-        });
+        quotes.create(req,res)
     });
     app.get('/quotes',function(req,res){
-        Quote.find({}, function(err, quotes) {
-            if(err) {
-                console.log('something went wrong');
-            } 
-            else { 
-                return res.render('quotes', {quotes:quotes})
-            }
-        })
+        quotes.show(req,res)
     })
+    app.listen(8000, function() {
+    console.log("listening on port 8000");
+})
 }
