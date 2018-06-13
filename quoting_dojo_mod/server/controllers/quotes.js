@@ -1,3 +1,4 @@
+Quote = require('../models/quotes.js')
 module.exports = {
     create:function(req,res){
         var quote = new Quote(req.body);
