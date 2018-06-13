@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quote Display</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="box">
+        <h1>Here are the awesome quotes!</h1>
+        <% for (let i=0; i<quotes.length; i++){%>
+            <p class="quote">"<%=quotes[i].quote%>"</p>
+            <p class="timestamp"><%=quotes[i].name%> on <%=quotes[i].created_at%></p>
+        <% } %>
+    </div>
+</body>
+</html>
