@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register - Login</title>
+    <link rel="stylesheet" href="/bootstrap.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="box">
+        <h1>Register</h1>
+        
+        <form action="/register" method="POST" id="form1">
+            <label for="">Email:</label>
+            <input type="text" class="form-control" name="email" value="<%=session.email%>">
+            <% if(messages.email) { %>
+                <% for (var x of messages.email) { %>
+                <h5><%= x %></h5>
+                <% } %>
+            <% } %>
+            <label for="">First Name:</label>
+            <input type="text" class="form-control" name="first_name"  value="<%=session.first_name%>">
+            <% if(messages.first_name) { %>
+                <% for (var x of messages.first_name) { %>
+                <h5><%= x %></h5>
+                <% } %>
+            <% } %>
+            <label for="">Last Name:</label>
+            <input type="text" class="form-control" name="last_name" value="<%=session.last_name%>">
+            <% if(messages.last_name) { %>
+                <% for (var x of messages.last_name) { %>
+                <h5><%= x %></h5>
+                <% } %>
+            <% } %>
+            <label for="">Birthday:</label>
+            <input type="date" class="form-control" name="birthday" value="<%=session.birthday%>">
+            <label for="">Password:</label>
+            <input type="password" class="form-control" name="password">
+            <% if(messages.password) { %>
+                <% for (var x of messages.password) { %>
+                <h5><%= x %></h5>
+                <% } %>
+            <% } %>
+            <label for="">Confirm Password:</label>
+            <input type="password" class="form-control" name="password_confirm">
+            <% if(messages.password_confirm) { %>
+                <% for (var x of messages.password_confirm) { %>
+                <h5><%= x %></h5>
+                <% } %>
+            <% } %>
+            <button form="form1" type="submit">Register!</button>
+        </form>
+    </div>
+    <div class="box" style="float: right;">
+        <h1>Login</h1>
+        <% if(messages.login) { %>
+            <% for (var x of messages.login) { %>
+            <h5><%= x %></h5>
+            <% } %>
+        <% } %>
+        <form action="/login" method="POST" id="form2">
+            <label for="">Email:</label>
+            <input type="text" class="form-control" name="email">
+            <label for="">Password:</label>
+            <input type="password" class="form-control" name="password">
+            <button form="form2" type="submit">Login!</button>
+        </form>
+    </div>
+</body>
+</html>

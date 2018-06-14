@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <link rel="stylesheet" href="/bootstrap.css">
+    <link rel="stylesheet" href="/style.css">
+    <script src="/jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.message p').click(function(){
+                $(this).siblings().slideDown()
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome <%=user.first_name%></h1>
+            <a href="/logout">
+                <button class="blue">Log Out</button>
+            </a>
+        </div>
+        <div class="form-control">
+            <% if(messages.secret) { %>
+                <% for (var x of messages.secret) { %>
+                <h5><%= x %></h5>
+                <% } %>
+            <% } %>
+            <form action="/message" method="POST">
+                <label for="">Secret:</label>
+                <input type="hidden" name="user" value="user.user_id">
+                <textarea class="form-control" name="text" cols="30" rows="4"></textarea>
+                <button type="submit">Post Secret</button>
+            </form>
+        </div>
+        <% if (secrets){ %>
+        <% for (let i=0; i<secrets.length; i++){%>
+            <div class="message">
+                <p class="quote">"<%=secrets[i].text%>"</p>
+                <p><%=secrets[i].user%></p>
+                <p><%=user.user_id%></p>
+                <% if (secrets[i].user == user.user_id){%>
+                <form action="/delete" method="POST">
+                    <input type="hidden" name="secret_id" value="<%=secrets[i].id%>">
+                    <button type="submit" class="red">Delete</button>
+                </form>
+                <% } %>
+                <%for (let j = 0; j<secrets[i].comments.length;j++){%>
+                    <div class="comment">
+                        <p class="quote">"<%=secrets[i].comments[j].text%>"</p>
+                    </div>
+                    <%}%>
+                    <% if(messages.comment) { %>
+                        <% for (var x of messages.comment) { %>
+                            <h5><%= x %></h5>
+                        <% } %>
+                    <% } %>
+                <div class="form-control commentform">
+                    <form action="/comment" method="POST">
+                        <label for="">Comment:</label>
+                        <textarea class="form-control" name="text" cols="30" rows="4"></textarea>
+                        <input type="hidden" name="user" value="user.user_id">
+                        <input type="hidden" name="secret" value="<%=secrets[i].id%>">
+                        <button type="submit" class="blue">Post Comment</button>
+                    </form>
+                </div>
+            </div>
+        <% } %>
+        <% } %>
+    </div>
+</body>
+</html>
